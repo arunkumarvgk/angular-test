@@ -1,0 +1,66 @@
+<div class="registration-box__card">
+    <div class="card-body">
+        <div class="registration-box__title">
+            Registration
+        </div>
+        <form [formGroup]="registerForm" (ngSubmit)="register()" >
+            <div class="registration-box__block">
+                <small [hidden]="! ( registerForm.controls.username.errors?.required && registerForm.controls.username.touched)"
+                       class="registration-box__input-invalid">
+                    Email Id is required.
+                </small>
+                <small [hidden]="! ( registerForm.controls.username.errors?.email && registerForm.controls.username.touched)"
+                       class="registration-box__input-invalid">
+                    Enter valid EmailID
+                </small>
+                <div class="input-group mb-3">
+                    <input type="text"
+                           class="form-control"
+                           formControlName="username"
+                           placeholder="Email Id"
+                           aria-label="Username"/>
+                </div>
+            </div>
+            
+            <div class="registration-box__block">
+                <small [hidden]="! ( registerForm.controls.password.errors?.required && registerForm.controls.password.touched)"
+                       class="registration-box__input-invalid">
+                    Password is required.
+                </small>
+                <small [hidden]="! ( registerForm.controls.password.errors?.minlength  && registerForm.controls.password.touched)"
+                       class="registration-box__input-invalid">
+                    Password should atleast of length 6
+                </small>
+                <div class="input-group mb-3">
+                    <input type="password"
+                        class="form-control"
+                        formControlName="password"
+                        placeholder="Password"
+                        aria-label="password"/>
+                </div>
+            </div>
+
+            <div class="registration-box__block">
+                <small [hidden]="! ( registerForm.controls.confirmPassword.errors?.required && registerForm.controls.confirmPassword.touched)"
+                       class="registration-box__input-invalid">
+                    Confirm Password is required.
+                </small>
+                <small [hidden]="! ( registerForm.controls.confirmPassword.errors?.passwordMismatch  && registerForm.controls.confirmPassword.touched)"
+                       class="registration-box__input-invalid">
+                    Passwords not matching
+                </small>
+                <div class="input-group mb-3">
+                    <input type="password"
+                        class="form-control"
+                        formControlName="confirmPassword"
+                        placeholder="Confirm Password"
+                        aria-label="confirm password"/>
+                </div>
+            </div>
+
+            <div class="registration-box__block">
+                <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid">Register</button>
+            </div>
+        </form>
+    </div>
+</div>

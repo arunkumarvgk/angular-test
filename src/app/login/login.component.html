@@ -1,0 +1,50 @@
+<div class="login-box__card">
+    <div class="card-body">
+        <div class="login-box__title">
+            Login
+        </div>
+        <form [formGroup]="loginForm" (ngSubmit)="login()" >
+            <div *ngIf="isLoginFailed"
+                  class="alert alert-danger" 
+                  role="alert">
+                Invalid Credentials!
+            </div>
+            <div class="login-box__block">
+                <small [hidden]="! ( loginForm.controls.username.errors?.required && loginForm.controls.username.touched)"
+                       class="login-box__input-invalid">
+                    Email Id is required.
+                </small>
+                <small [hidden]="! ( loginForm.controls.username.errors?.email && loginForm.controls.username.touched)"
+                       class="login-box__input-invalid">
+                    Invalid EmailID
+                </small>
+                <div class="input-group mb-3">
+                    <input type="text"
+                           class="form-control"
+                           formControlName="username"
+                           placeholder="Email Id"
+                           aria-label="Username"/>
+                </div>
+            </div>
+            
+            <div class="login-box__block">
+                <small [hidden]="! ( loginForm.controls.password.errors?.required && loginForm.controls.password.touched)"
+                        class="login-box__input-invalid">
+                        Password is required.
+                </small>
+                <div class="input-group mb-3">
+                    <input type="password"
+                        class="form-control"
+                        formControlName="password"
+                        placeholder="Password"
+                        aria-label="password"/>
+                </div>
+            </div>
+
+            <div class="login-box__block">
+                <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Login</button>
+                <button type="button" routerLink="/register" class="btn btn-link">Register ?</button>
+            </div>
+        </form>
+    </div>
+</div>
