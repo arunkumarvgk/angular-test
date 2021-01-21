@@ -35,6 +35,7 @@ export class RegisterComponent implements OnInit {
   }
 
    register() {
+     /** Add user to registered users list */
     this.registerService.addUser({
       username: this.registerForm.get('username').value,
       password: this.registerForm.get('password').value}
@@ -43,6 +44,12 @@ export class RegisterComponent implements OnInit {
     this.router.navigate(['login']);
    }
 
+  /**
+  * Validator for verifying if password and confirm password are same.
+  *
+  * @param passwordControlName The password form control name.
+  * @param confirmPasswordControlName The confirm password form control name.
+  */
    private passwordConfirmValidator(passwordControlName: string, confirmPasswordControlName: string) {
     return (formGroup: FormGroup) => {
         const passwordControl = formGroup.controls[passwordControlName];
