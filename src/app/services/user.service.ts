@@ -11,6 +11,7 @@ export class UserService {
   private readonly KEY = 'vmware-activeuser';
 
   constructor(private registerService: RegisterService) {
+    /** Retrives the loggedin user on page reload if the user had not logged out */
     if (localStorage.hasOwnProperty(this.KEY)) {
       this.activeUser = window.atob(localStorage.getItem(this.KEY));
     }
@@ -32,6 +33,7 @@ export class UserService {
       password: pword
     };
 
+    /** Check againts the list of registered users */
     const isUserExists = this.registerService.validateUser(user);
 
     if (isUserExists) {
